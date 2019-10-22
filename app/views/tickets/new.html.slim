@@ -1,0 +1,28 @@
+
+= form_with scope: :ticket, url: event_tickets_path, local: true do |form|
+  - if @ticket.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@ticket.errors.count, "error")
+        | prohibited this ticket from being saved:
+      ul
+        - @ticket.errors.full_messages.each do |msg|
+          li
+            = msg
+
+  p
+    = form.label :number_of_tickets
+    = form.number_field :number
+    br
+    = form.label :price
+    = form.number_field :price
+    br
+    = form.label :number
+    = form.text_field :number
+    br
+    = form.hidden_field :user_id, :value => current_user.id
+    br
+
+    = form.label :buy_tickets
+
+    = form.submit

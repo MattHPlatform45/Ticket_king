@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'pages#index'
+  get 'pages/index'
+  devise_for :users do
+    get '/users/sign_out' => 'users/sessions#destroy', :method => :delete
+    get '/users/sign_up' => 'users/registrations#new'
+  end
+  resources :events do
+    resources :tickets
+  end
+  resources :categories
 end
