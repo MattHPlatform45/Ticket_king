@@ -1,0 +1,12 @@
+h1 events show page
+
+
+= @event.name
+br
+= @event.description
+br
+= @event.number_of_tickets
+br
+= @event.date.strftime("%b %-d %Y")
+br
+=link_to 'buy tickets', new_event_ticket_path(@event.id)

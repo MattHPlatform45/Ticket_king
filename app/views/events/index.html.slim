@@ -1,0 +1,14 @@
+h1 events index
+=link_to 'add an event', new_event_path
+br
+br
+
+-@events.each do |event|
+  =link_to event.name, event_path(event)
+  br
+  = event.description
+  br
+  = event.date.strftime("%b %-d %Y")
+  br
+  = event.number_of_tickets
+  br

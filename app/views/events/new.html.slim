@@ -1,0 +1,39 @@
+h1 events create
+
+= form_with scope: :event, url: events_path, local: true do |form|
+  - if @event.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@event.errors.count, "error")
+        | prohibited this event from being saved:
+      ul
+        - @event.errors.full_messages.each do |msg|
+          li
+            = msg
+
+  p
+    = form.label :name
+    = form.text_field :name
+    br
+
+    = form.label :number_of_tickets
+    = form.number_field :number_of_tickets
+    br
+
+    = form.label :Date_event_occurs
+    = form.date_field :date
+    br
+
+    = form.label :Event_category
+    = form.collection_select :category_id, Category.order(:name),:id,:name, include_blank: true
+    br
+
+    = form.label :description
+    = form.text_area :description
+    br
+    = form.hidden_field :user_id, :value => current_user.id
+    br
+
+
+
+    = form.submit
